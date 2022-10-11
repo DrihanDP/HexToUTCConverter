@@ -16,10 +16,16 @@ else:
     joined_hex = hex_input
 
 if "little" in endian or "intel" in endian:
-    converted_hex = int(joined_hex[::-1], 16)
+    try:
+        converted_hex = int(joined_hex[::-1], 16)
+        times = datetime.timedelta(seconds=(int(converted_hex) * multiplier))
+        print(times)
+    except:
+        print("Invalid hex value, please retry")
 else:
-    converted_hex = int(joined_hex, 16)
-
-times = datetime.timedelta(seconds=(int(converted_hex) * multiplier))
-
-print(times)
+    try:
+        converted_hex = int(joined_hex, 16)
+        times = datetime.timedelta(seconds=(int(converted_hex) * multiplier))
+        print(times)
+    except:
+        print("Invalid hex value, please retry")
